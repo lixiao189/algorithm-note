@@ -1,0 +1,85 @@
+\documentclass[UTF8]{ctexart}
+
+\usepackage{listings}
+\usepackage{color}
+\usepackage[colorlinks,linkcolor=blue]{hyperref}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{ %
+    aboveskip=3mm,
+    belowskip=3mm,
+    showstringspaces=false,
+    columns=flexible,
+    basicstyle={\small\ttfamily},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    keywordstyle=\color{blue},
+    commentstyle=\color{dkgreen},
+    stringstyle=\color{mauve},
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=3
+}
+
+\title{笔记 22-9-15}
+\author{李肖}
+
+\begin{document}
+
+% File cover
+\maketitle
+
+\section{时间复杂度}
+
+\subsection{时间复杂度表示求法(上界)}
+\begin{itemize}
+    \item 去常数
+    \item 去低次项
+    \item 去高次项系数
+\end{itemize}
+
+\textbf{例子}
+
+\begin{itemize}
+    \item $n + 10^6 = O(n)$
+    \item $n2 + 3n - 100 = O(n^2)$
+    \item $n^2log(n) + n^3 - 15n = O(n^3)$
+    \item $2^n = n ^ 2 = O(2^n)$
+\end{itemize}
+
+\subsection{时间复杂度确界}
+
+\textbf{参考博客：}\href{https://blog.csdn.net/u012495579/article/details/86630074}{https://blog.csdn.net/u012495579/article/details/86630074}
+
+上界就是存在大于 0 的数 $n_0$ 和 C，对任意的 $ n \geq n_0$ 有 $T(n) \leq c*g(n)$
+
+\begin{itemize}
+    \item $T(n) = \Theta(g(n))$ 确界
+    \item $T(n) = O(g(n))$ 上界
+    \item $T(n) = \Omega(g(n))$ 下界
+\end{itemize}
+
+\section{递归}
+
+\subsection{汉诺塔问题}
+
+\textbf{参考博客：}\href{https://blog.csdn.net/weixin_66030644/article/details/124276464}{博客链接}
+
+\textbf{解决思路:}
+
+想要解决该问题，即是要将64个金盘全部移动到C杆，则
+
+要想把第64个金盘移到C杆，先要借助B杆，将63个金盘移动到B杆
+
+要想把63个金盘移动到B杆，先要借助C杆，将62个金盘移动到C杆
+
+于是，
+
+要想把3个金盘移动到C杆，先要借助B杆，将2个金盘移动到B杆
+
+要想把2个金盘移动到B杆，先要借助C杆，将1个金盘移动到C杆
+
+\end{document}
