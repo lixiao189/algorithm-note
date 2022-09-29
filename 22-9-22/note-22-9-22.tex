@@ -1,0 +1,85 @@
+\documentclass[UTF8]{ctexart}
+
+\usepackage{listings}
+\usepackage{color}
+\usepackage[colorlinks,linkcolor=blue]{hyperref}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{ %
+    language=python,
+    aboveskip=3mm,
+    belowskip=3mm,
+    showstringspaces=false,
+    columns=flexible,
+    basicstyle={\small\ttfamily},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    keywordstyle=\color{blue},
+    commentstyle=\color{dkgreen},
+    stringstyle=\color{mauve},
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=3
+}
+
+\title{笔记 22-9-15}
+\author{李肖}
+\date{2022 年 9 月 22 日}
+
+\begin{document}
+
+% File cover
+\maketitle
+
+\section{Merge Sort}
+\textbf{时间复杂度：}$O(n*log(n))$
+
+\href{https://blog.csdn.net/qq_41219157/article/details/124096439}{博客详解}
+
+\begin{lstlisting}
+import typing
+
+
+def merge_sort(l: int, r: int, arr: typing.List[int]):
+    if l == r:
+        return
+
+    mid = (l + r) >> 1
+    merge_sort(l, mid, arr)
+    merge_sort(mid + 1, r, arr)
+
+    i = l
+    j = mid + 1
+    tmp_list = []
+    while i <= mid and j <= r:
+        if arr[i] <= arr[j]:
+            tmp_list.append(arr[i])
+            i += 1
+        else:
+            tmp_list.append(arr[j])
+            j += 1
+
+    while i <= mid:
+        tmp_list.append(arr[i])
+        i += 1
+    while j <= r:
+        tmp_list.append(arr[j])
+        j += 1
+
+    index = 0
+    for k in range(l, r + 1):
+        arr[k] = tmp_list[index]
+        index += 1
+
+
+if __name__ == '__main__':
+    arr = [5, 4, 3, 2, 1]
+    merge_sort(0, len(arr) - 1, arr)
+    print(arr)
+
+\end{lstlisting}
+
+\end{document}
