@@ -1,0 +1,103 @@
+\documentclass[UTF8]{ctexart}
+
+\usepackage{listings}
+\usepackage{color}
+\usepackage{amsmath} 
+\usepackage[colorlinks,linkcolor=blue]{hyperref}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{ %
+    aboveskip=3mm,
+    belowskip=3mm,
+    showstringspaces=false,
+    columns=flexible,
+    basicstyle={\small\ttfamily},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    keywordstyle=\color{blue},
+    commentstyle=\color{dkgreen},
+    stringstyle=\color{mauve},
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=3
+}
+
+\title{笔记 22-10-13}
+\author{李肖}
+\date{2022 年 10 月 13 日}
+
+\begin{document}
+
+% File cover
+\maketitle
+
+\section{贪心算法}
+
+\subsection{应用场景}
+优化问题: 最长，最大，最小，最高……
+
+\subsection{思路}
+每步采用局部最优策略，到达全局最优策略
+
+\subsection{例题}
+\subsubsection{任务安排问题}
+
+\textbf{博客解析: } \href{https://blog.csdn.net/DayOneMore/article/details/68938850}{博客链接}
+
+\begin{lstlisting}[language=C++]
+#include<iostream>
+#include<algorithm>
+#include<vector>
+using namespace std;
+
+//任务安排问题
+struct task {
+    int id;
+    int start;
+    int finish;
+};
+
+bool cmpfinish(task t1,task t2)
+{
+    return t1.finish < t2.finish;
+}
+
+int main()
+{
+    int n;
+    cin >> n;
+    task Task[20];
+    vector<task> vtask;
+    for (int i = 0; i < n; i++)
+    {
+        cin >> Task[i].id >> Task[i].start >> Task[i].finish;
+    }
+    //首先将任务按照结束时间非递减进行排序
+    sort(Task, Task + n, cmpfinish);
+    //因为第一个任务一定在最优解里面（这个可以反证法证明出来的），所以首先将第一个任务加入
+    vtask.push_back(Task[0]);
+    //然后看一下后面的任务，其start开始时间，有没有与前一个任务的结束时间fi重合
+    int j = 0;//用来记录最新加入的任务，以便确定需要比较的finish时间。
+    for (int i = j + 1; i < n; i++)
+    {
+        if (Task[i].start >= Task[j].finish)//需要注意等于也可以！
+        {
+            vtask.push_back(Task[i]);
+            j = i;
+        }
+    }
+    vector<task>::iterator it;
+    for (it = vtask.begin(); it != vtask.end(); it++)
+    {
+        cout << (*it).id << endl;
+    }
+    system("pause");
+    return 0;
+}
+
+\end{lstlisting}
+
+\end{document}
