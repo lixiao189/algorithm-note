@@ -1,0 +1,61 @@
+\documentclass[UTF8]{ctexart}
+
+\usepackage{listings}
+\usepackage{color}
+\usepackage{amsmath} 
+\usepackage{graphicx}
+\usepackage[colorlinks,linkcolor=blue]{hyperref}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{ %
+    aboveskip=3mm,
+    belowskip=3mm,
+    showstringspaces=false,
+    columns=flexible,
+    basicstyle={\small\ttfamily},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    keywordstyle=\color{blue},
+    commentstyle=\color{dkgreen},
+    stringstyle=\color{mauve},
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=3
+}
+
+\title{笔记 22-11-24}
+\author{李肖}
+\date{2022 年 11 月 24 日}
+
+\begin{document}
+
+% File cover
+\maketitle
+
+\section*{动态规划}
+
+\subsection*{算法背景}
+
+\begin{itemize}
+    \item 求解优化问题 计数问题
+    \item 递归、分治、贪心、强化学习
+    \item 问题可以被分解，解可以用递归的方式描述
+\end{itemize}
+
+\subsection*{应用问题}
+
+\subsubsection*{1. 斐波那契数列}
+
+\[
+    f(n)=\left\{
+    \begin{aligned}
+         & f(n - 1) + f(n - 2), n > 1 \\
+         & 1, n \le 1
+    \end{aligned}
+    \right.
+\]
+
+\end{document}
